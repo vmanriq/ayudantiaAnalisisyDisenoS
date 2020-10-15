@@ -1,6 +1,6 @@
-# Aduantia Análisis y diseño de software
+# Ayudantia Análisis y diseño de software
 
-Ayudanita para el ramo Análisis y diseño de software, en esta se enseñara una breve introducion a node, junto con sus paquetes express, sequelize, sequelize-cli, nodemon
+Ayudantia para el ramo Análisis y diseño de software, en esta se enseñara una breve introducion a node, junto con sus paquetes express, sequelize, sequelize-cli, nodemon
 
 ## Capsulas
 
