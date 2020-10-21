@@ -1,8 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const { Task } = require("../models");
+const verifySign = require("./verifyToken");
 
-router.get("/", async (req, resp) => {
+router.get("/", verifySign, async (req, resp) => {
   try {
     const allTask = await Task.findAll({ where: req.query });
     resp.send(allTask);

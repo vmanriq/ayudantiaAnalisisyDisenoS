@@ -5,16 +5,20 @@ const jwt = require("jsonwebtoken");
 
 router.post("/register", async (req, res) => {
   try {
-    const verifyEmail = await User.findOne({
-      where: { email: req.body.email },
+    const emailValid = await User.findOne({
+      where: {
+        email: req.body.email,
+      },
     });
-    if (verifyEmail) return res.status(400).send("ususario ya esta registrado");
-    const salt = await bcrypt.salt(10);
-    const encryptPass = await bcrypt.hash(req.body.pass, salt);
-    const user = User.create({
-      pass: encryptPass,
-      username: req.body.username,
+    if (emailValid) return res.status(400).send("este usuario ya existe");
+    //se encripta la constrasena
+    const salt = await bcrypt.genSalt(10);
+    const hashPass = await bcrypt.hash(req.body.pass, salt);
+    //se crea el usuario
+    const user = await User.create({
       email: req.body.email,
+      pass: hashPass,
+      username: req.body.username,
     });
     return res.send(user);
   } catch (error) {
@@ -29,14 +33,15 @@ router.post("/login", async (req, res) => {
         email: req.body.email,
       },
     });
-    if (!user) return res.status(400).send("contrasena o pass invalido");
-    const valPass = await bcrypt.compare(req.body.pass, user.pass);
-    if (!valPass) return res.status(400).send("contrasena o email invaildo");
-    //generando token
+    if (!user) return res.status(400).send("usuario o contrasena equivocada");
+    const validPass = await bcrypt.compare(req.body.pass, user.pass);
+    if (!validPass)
+      return res.status(400).send("usuario o contrasena equivocada");
     const token = jwt.sign({ id: user.id }, process.env.SECRET_TOKEN);
     return res.header("auth-token", token).send("estas logeado");
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(400).send(error);
   }
 });
+
 module.exports = router;
