@@ -9,5 +9,4 @@ Ayudantia para el ramo Análisis y diseño de software, en esta se enseñara una
 3. [Express y rutas](https://youtu.be/CrVGM1UZM5g)
 4. [Configurando sequelize](https://youtu.be/CrVGM1UZM5g)
 5. [Realizando CRUD con sequelize](https://www.youtube.com/watch?v=D6c-fEydTZI&feature=youtu.be)
-6. [Inluyendo un login a nuestra aplicación] **pendiente**
-7. [Deploy a Heroku] **pendiente**
+6. [Inluyendo un login a nuestra aplicación](https://youtu.be/0uOI_3yQmLo)
