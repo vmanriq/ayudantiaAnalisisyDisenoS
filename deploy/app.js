@@ -1,8 +1,11 @@
 const express = require("express");
+const cors = require('cors');
 require("dotenv").config();
 
 const app = express();
 
+app.use(cors());
+app.enable("trust proxy");
 app.use(express.json());
 
 //app.use("/category", require("./routes/categoryRoutes"));
